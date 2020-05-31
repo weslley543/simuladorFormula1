@@ -10,11 +10,11 @@ package formula1simulator;
  * @author weslley
  */
 public class Car extends Thread {
-    int identificador;
+    
+    int identificador, round, fuel, state;
     String team;
-    int round;
-    int fuel;
-    int state;
+
+    
     public Car(int fuel, String team, int id, int state, int round){
         this.fuel = fuel;
         this.team = team;
@@ -29,13 +29,13 @@ public class Car extends Thread {
     public void run(){
         int i = this.round;
         int rounds = 50;
+        
         while(i<rounds){
-            this.state = (int)(Math.random()*3)%2;
-            
+            this.state = (int)(Math.random()*3)%2;           
             switch (this.state){
-                case 0 : System.out.println(this.team + "Parado"); break;
-                case 1 : System.out.println(this.team +"Correndo");break;
-                case 2 : System.out.println(this.team +"PitStop");break;
+                case 0 : System.out.println(this.team + " - Parado"); break;
+                case 1 : System.out.println(this.team +" - Correndo");break;
+                case 2 : System.out.println(this.team +" - PitStop");break;
             }
             
             i++;
