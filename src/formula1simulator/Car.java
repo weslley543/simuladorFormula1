@@ -5,6 +5,9 @@
  */
 package formula1simulator;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author weslley
@@ -13,13 +16,19 @@ public class Car extends Thread {
     int identificador;
     String team;
     int round;
-    int fuel;
+    float fuel;
     int state;
-    public Car(int fuel, String team, int id, int state, int round){
-        this.fuel = fuel;
+    boolean runState;
+    boolean whelsState;
+    
+    public Car(String team, int id){
+        this.fuel = 1.0f;
         this.team = team;
         this.state = 0;
         this.round =0;
+        this.runState = true;
+        this.whelsState = true;
+        
     }
     
     /**
@@ -29,18 +38,39 @@ public class Car extends Thread {
     public void run(){
         int i = this.round;
         int rounds = 50;
+        
         while(i<rounds){
-            this.state = (int)(Math.random()*3)%2;
+        
+            this.state = (int)Math.floor(Math.random()*3);
             
             switch (this.state){
-                case 0 : System.out.println(this.team + "Parado"); break;
+                case 0 : System.out.println(this.team + " Parado"); break;
                 case 1 : System.out.println(this.team +"Correndo");break;
-                case 2 : System.out.println(this.team +"PitStop");break;
+                case 2 : System.out.println(this.team +"PitStop");
+                    if(this.fuel<0.2){
+                        try {
+                            Car.sleep(1000);
+                            System.out.println("Carro abastecendo ");
+                            this.putFuel();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                break;
             }
             
+            this.fuel = this.fuel * (float)Math.random()/0.9f;
+            System.out.println(this.fuel);
             i++;
             
         }
+        
+        this.runState = false;
+        System.out.println("Acabou a corrida");
+    }
+    
+    public void putFuel(){
+        this.fuel = 1.0f;
     }
     public int identificador() {
         return identificador;
@@ -66,7 +96,7 @@ public class Car extends Thread {
         this.round = round;
     }
 
-    public int getFuel() {
+    public float getFuel() {
         return fuel;
     }
 

@@ -15,12 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Car car1 = new Car(100,"Ferrari",1,0,0);
-       Car car2 = new Car(100,"Williams",1,0,0);
+       Car car1 = new Car("Ferrari",1);
        
        car1.start();
-       car2.start();
-       
+      
     }
     
 }
