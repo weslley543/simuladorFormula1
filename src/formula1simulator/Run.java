@@ -12,20 +12,39 @@ package formula1simulator;
 public class Run {
     public Car []cars;
     public String gpPlace;
-    
+   
     
     public Run(Car [] cars, String place){
         this.cars = cars;
         this.gpPlace = place;
     }
     
-    public void initRun(){
-       
-        while(this.cars[0].runState == true){
-            if(this.cars[0].state == 0){
-               
-                
+    public void initRace(){
+        for(int i=0 ; i<cars.length ; i++){
+            cars[i].start();
+        }
+        int terminados = 2, i = 0;
+        
+        while(i<terminados){
+            System.out.println("While");
+            if(cars[0].runState == false){
+                i++;
+                System.out.println(i);
+            }
+            if(cars[1].runState == false){
+                i++;
+                System.out.println(i);
             }
         }
+        
+        System.out.println("For final");
+        for(i = 0 ; i<cars.length ; i++){
+            System.out.println(cars[i].endRun);
+        }
+        
+    }
+    
+    public void race(){
+        
     }
 }

@@ -20,6 +20,7 @@ public class Car extends Thread {
     int state;
     boolean runState;
     boolean whelsState;
+    long endRun;
     
     public Car(String team, int id){
         this.fuel = 1.0f;
@@ -28,6 +29,7 @@ public class Car extends Thread {
         this.round =0;
         this.runState = true;
         this.whelsState = true;
+        
         
     }
     
@@ -38,7 +40,7 @@ public class Car extends Thread {
     public void run(){
         int i = this.round;
         int rounds = 50;
-        
+        long ini = System.currentTimeMillis();
         while(i<rounds){
         
             this.state = (int)Math.floor(Math.random()*3);
@@ -60,13 +62,13 @@ public class Car extends Thread {
             }
             
             this.fuel = this.fuel * (float)Math.random()/0.9f;
-            System.out.println(this.fuel);
+         
             i++;
             
         }
-        
+        this.endRun = System.currentTimeMillis()-ini;
         this.runState = false;
-        System.out.println("Acabou a corrida");
+        System.out.println("Carro : "+this.team+" Fim da corrida : " +endRun );
     }
     
     public void putFuel(){

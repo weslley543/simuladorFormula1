@@ -15,9 +15,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Car car1 = new Car("Ferrari",1);
+       Car []cars = new Car[2];
        
-       car1.start();
+       cars[0] = new Car("Ferrari",1);
+       cars[1] = new Car("Williams",1);;
+       
+       Run run = new Run(cars, "Malasia");
+       
+       run.initRace();
+       
+       
+      
       
     }
     
