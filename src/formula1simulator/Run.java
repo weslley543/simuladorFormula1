@@ -5,46 +5,42 @@
  */
 package formula1simulator;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author weslley
  */
 public class Run {
-    public Car []cars;
+    public ArrayList <Car> cars;
     public String gpPlace;
    
     
-    public Run(Car [] cars, String place){
+    public Run(ArrayList cars, String place){
         this.cars = cars;
         this.gpPlace = place;
     }
     
     public void initRace(){
-        for(int i=0 ; i<cars.length ; i++){
-            cars[i].start();
-        }
-        int terminados = 2, i = 0;
-        
-        while(i<terminados){
-            System.out.println("While");
-            if(cars[0].runState == false){
-                i++;
-                System.out.println(i);
-            }
-            if(cars[1].runState == false){
-                i++;
-                System.out.println(i);
-            }
+        for (Car car : cars) {
+            car.start();
         }
         
-        System.out.println("For final");
-        for(i = 0 ; i<cars.length ; i++){
-            System.out.println(cars[i].endRun);
-        }
+//        while(cars[1].isAlive() || cars[0].isAlive()){
+//            System.out.println("Thread rodando");
+//        };
+
+          while(cars.get(0).isAlive() || cars.get(1).isAlive()){
+              //System.out.println("Threads rodando");
+          }
         
+          Collections.sort(cars);
+          
+          
+          for(int i = 0 ; i<cars.size(); i++){
+              System.out.println(cars.get(i).endRun);
+          }
     }
     
-    public void race(){
-        
-    }
 }
