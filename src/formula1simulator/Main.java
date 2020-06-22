@@ -5,6 +5,8 @@
  */
 package formula1simulator;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author weslley
@@ -15,12 +17,18 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Car car1 = new Car(100,"Ferrari",1,0,0);
-       Car car2 = new Car(100,"Williams",1,0,0);
+       ArrayList <Car> cars = new ArrayList();
        
-       car1.start();
-       car2.start();
+       cars.add(new Car("Ferrari",1)); 
+       cars.add(new Car("Williams",1));
        
+       Run run = new Run(cars, "Malasia");
+       
+       run.initRace();
+       
+       
+      
+      
     }
     
 }
