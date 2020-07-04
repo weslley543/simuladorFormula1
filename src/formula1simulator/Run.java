@@ -8,11 +8,12 @@ package formula1simulator;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 /**
  *
  * @author weslley
  */
-public class Run {
+public class Run  {
     public ArrayList <Car> cars;
     public String gpPlace;
    
@@ -24,6 +25,7 @@ public class Run {
     
     public void initRace(){
         for (Car car : cars) {
+            
             car.start();
         }
         
@@ -31,22 +33,15 @@ public class Run {
         
         // Deixar as threads trabalharem e implemantar uma interface para controlar 
         
-//        while(cars[1].isAlive() || cars[0].isAlive()){
-//            System.out.println("Thread rodando");
-//        };
+      
 
-//          while(cars.get(0).isAlive() || cars.get(1).isAlive()){;
-//              //System.out.println("Threads rodando");
-//          }
+          while(cars.get(0).isAlive() || cars.get(1).isAlive()){
+              System.out.println("Threads rodando");
+          }
            
           Collections.sort(cars);
-          
-          
-          
-          
-          for(int i = 0 ; i<cars.size(); i++){
-              System.out.println(cars.get(i).endRun);
-          }
+        
+
     }
     
 }
