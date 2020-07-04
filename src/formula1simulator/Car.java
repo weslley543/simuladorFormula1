@@ -13,16 +13,17 @@ import java.util.logging.Logger;
  *
  * @author weslley
  */
-<<<<<<< HEAD
+
 public class Car extends Thread {
     
     int identificador, round, fuel, state;
     String team;
+    boolean endRun;
 
     
     public Car(int fuel, String team, int id, int state, int round){
         this.fuel = fuel;
-=======
+
 public class Car extends Thread implements Comparable <Car> {
     int identificador;
     String team;
@@ -34,8 +35,7 @@ public class Car extends Thread implements Comparable <Car> {
     long endRun;
     
     public Car(String team, int id){
-        this.fuel = 1.0f;
->>>>>>> b3b2d2a2c03dafd3bc8b378e3ee25aef199a3b82
+        this.fuel = 1.0f
         this.team = team;
         this.state = 0;
         this.round =0;
@@ -51,7 +51,7 @@ public class Car extends Thread implements Comparable <Car> {
     public void run(){
         int i = this.round;
         int rounds = 50;
-<<<<<<< HEAD
+
         
         while(i<rounds){
             this.state = (int)(Math.random()*3)%2;           
@@ -59,7 +59,7 @@ public class Car extends Thread implements Comparable <Car> {
                 case 0 : System.out.println(this.team + " - Parado"); break;
                 case 1 : System.out.println(this.team +" - Correndo");break;
                 case 2 : System.out.println(this.team +" - PitStop");break;
-=======
+
         long ini = System.currentTimeMillis();
         while(i<rounds){
         
@@ -78,7 +78,7 @@ public class Car extends Thread implements Comparable <Car> {
                         }
                     }
                 break;
->>>>>>> b3b2d2a2c03dafd3bc8b378e3ee25aef199a3b82
+
             }
             
             this.fuel = this.fuel * (float)Math.random()/0.9f;
