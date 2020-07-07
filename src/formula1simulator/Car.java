@@ -14,15 +14,6 @@ import java.util.logging.Logger;
  * @author weslley
  */
 
-public class Car extends Thread {
-    
-    int identificador, round, fuel, state;
-    String team;
-    boolean endRun;
-
-    
-    public Car(int fuel, String team, int id, int state, int round){
-        this.fuel = fuel;
 
 public class Car extends Thread implements Comparable <Car> {
     int identificador;
@@ -35,7 +26,7 @@ public class Car extends Thread implements Comparable <Car> {
     long endRun;
     
     public Car(String team, int id){
-        this.fuel = 1.0f
+        this.fuel = 1.0f;
         this.team = team;
         this.state = 0;
         this.round =0;
