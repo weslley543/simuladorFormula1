@@ -6,6 +6,7 @@
 package formula1simulator;
 
 import java.util.Comparator;
+import java.util.EventListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,17 +14,16 @@ import java.util.logging.Logger;
  *
  * @author weslley
  */
-
-
-public class Car extends Thread implements Comparable <Car> {
-    int identificador;
-    String team;
-    int round;
-    float fuel;
-    int state;
-    boolean runState;
-    boolean whelsState;
+public class Car extends Thread implements Comparable <Car>, EventListener {
+    private int identificador;
+    private String team;
+    private int round;
+    private float fuel;
+    private int state;
+    private boolean runState;
+    private boolean whelsState;
     long endRun;
+    private String event; 
     
     public Car(String team, int id){
         this.fuel = 1.0f;
@@ -31,8 +31,7 @@ public class Car extends Thread implements Comparable <Car> {
         this.state = 0;
         this.round =0;
         this.whelsState = true;
-        
-        
+        this.event = "";
     }
     
     /**
@@ -42,34 +41,71 @@ public class Car extends Thread implements Comparable <Car> {
     public void run(){
         int i = this.round;
         int rounds = 50;
-
-        
-        while(i<rounds){
-            this.state = (int)(Math.random()*3)%2;           
-            switch (this.state){
-                case 0 : System.out.println(this.team + " - Parado"); break;
-                case 1 : System.out.println(this.team +" - Correndo");break;
-                case 2 : System.out.println(this.team +" - PitStop");break;
-
         long ini = System.currentTimeMillis();
+        this.runState = true;
         while(i<rounds){
         
-            this.state = (int)Math.floor(Math.random()*3);
+            this.state = (int)Math.floor(Math.random()*2);
             
             switch (this.state){
-                case 0 :  break;
-                case 1 : break;
-                case 2 : 
+                case 0 :   
+                    this.state = (int)Math.floor(Math.random()*3);
+                    switch(this.state){
+                        case 0 :
+                            this.setEvent("Chuva");
+                            {
+                                try {
+                                    this.sleep(50);
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                            
+                        case 1 :
+                            this.setEvent("Neblina");
+                            {
+                                try {
+                                    this.sleep(100);
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                        case 2 : 
+                            this.setEvent("Chuva com granizo");
+                            {
+                               try {
+                                this.sleep(200);
+                               } catch (InterruptedException ex) {
+                                   Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            break;
+                    }
+                    break;
+                    
+               
+                case 1 : 
                     if(this.fuel<0.2){
+                        this.setEvent("Reabastecendo");
                         try {
                             Car.sleep(1000);
                             this.putFuel();
                         } catch (InterruptedException ex) {
                             Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                    }else{
+                        this.setEvent("Troca de Pneu");
+                         try {
+                            this.sleep(5000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 break;
-
+                
+                 
             }
             
             this.fuel = this.fuel * (float)Math.random()/0.9f;
@@ -77,13 +113,13 @@ public class Car extends Thread implements Comparable <Car> {
             i++;
             
         }
+       
+        this.runState = false;
         
-        this.endRun = System.currentTimeMillis() - ini;
     }
     
     public void putFuel(){
-        this.fuel = 1.0f;
-    }
+        this.setFuel(round);    }
     public int identificador() {
         return identificador;
     }
@@ -114,6 +150,14 @@ public class Car extends Thread implements Comparable <Car> {
 
     public void setFuel(int fuel) {
         this.fuel = fuel;
+    }
+    
+    public void setEvent(String event){
+        this.event = event;
+    }
+    
+    public String getEvent(){
+        return this.event;
     }
 
     @Override
