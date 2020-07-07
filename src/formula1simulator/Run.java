@@ -36,7 +36,9 @@ public class Run  {
       
 
           while(cars.get(0).isAlive() || cars.get(1).isAlive()){
-              System.out.println("Threads rodando");
+             //System.out.println("Threads rodando");
+              System.out.println("Carro1: " + cars.get(0).getFuel() + "Carro2: " + cars.get(1).getFuel() ); 
+            
           }
            
           Collections.sort(cars);
