@@ -22,8 +22,9 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
     private int state;
     private boolean runState;
     private boolean whelsState;
-    long endRun;
     private String event; 
+    private int postitionX;
+    private int positionY;
     
     public Car(String team, int id){
         this.fuel = 1.0f;
@@ -32,6 +33,7 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
         this.round =0;
         this.whelsState = true;
         this.event = "";
+        
     }
     
     /**
@@ -110,12 +112,28 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
             
             this.fuel = this.fuel * (float)Math.random()/0.9f;
          
-            i++;
+            
             
         }
        
         this.runState = false;
         
+    }
+
+    public int getPostitionX() {
+        return postitionX;
+    }
+
+    public void setPostitionX(int postitionX) {
+        this.postitionX = postitionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
     }
     
     public void putFuel(){
