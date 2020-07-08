@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formula1simulator;
+package controller;
 
+import formula1simulator.Car;
 import java.util.ArrayList;
+
 
 /**
  *
- * @author weslley
+ * @author GustavoS
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+public class controller {
+    
+    static ArrayList <Car> cars = new ArrayList();
+    
+    
     public static void main(String[] args) {
-       ArrayList <Car> cars = new ArrayList();
-       
        cars.add(new Car("Ferrari",1)); 
        cars.add(new Car("Williams",1));
-       
-       Run run = new Run(cars, "Malasia");
-       
-       run.initRace();
-       
     }
     
+    
+    public  int test(){
+        return 1+2;
+    }
+    
+    public int weather(){
+        return 1;
+    }
 }

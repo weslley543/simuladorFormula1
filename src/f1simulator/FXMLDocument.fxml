@@ -18,12 +18,12 @@
         <children>
           <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="542.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fx:id="weather_fog" fitHeight="65.0" fitWidth="70.0" layoutX="498.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="weather_fog" fitHeight="65.0" fitWidth="70.0" layoutX="519.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@icons8-dia-de-nevoeiro-32.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="295.0" fitWidth="488.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="299.0" fitWidth="526.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@track_racer.png" />
                      </image>
@@ -92,12 +92,12 @@
                         <Image url="@car_green.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="weather_sun" fitHeight="65.0" fitWidth="70.0" layoutX="498.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="weather_sun" fitHeight="65.0" fitWidth="70.0" layoutX="519.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@icons8-sol-32.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="weather_rain" fitHeight="65.0" fitWidth="70.0" layoutX="498.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="weather_rain" fitHeight="65.0" fitWidth="70.0" layoutX="519.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@icons8-chuva-32.png" />
                      </image>
@@ -107,7 +107,7 @@
                         <Font name="Monospaced Regular" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="status_weather" layoutX="516.0" layoutY="5.0" prefHeight="19.0" prefWidth="70.0" text="Label" textAlignment="RIGHT">
+                  <Label fx:id="status_weather" layoutX="516.0" layoutY="5.0" prefHeight="19.0" prefWidth="125.0" text="Label" textAlignment="RIGHT">
                      <font>
                         <Font name="Monospaced Regular" size="11.0" />
                      </font>

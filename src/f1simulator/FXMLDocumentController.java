@@ -5,6 +5,7 @@
  */
 package f1simulator;
 
+import controller.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.image.ImageView;
  * @author GustavoS
  */
 public class FXMLDocumentController implements Initializable {
+    
+    controller sis = new controller();
     
     static float x = 0, y = 0, r = -15, flag = 0;
     public static float x_red_origin, y_red_origin, r_red_origin;
@@ -41,7 +44,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     
-    private Label status_car_red, status_car_yellow, status_car_green;
+    private Label status_car_red, status_car_yellow, status_car_green, status_weather;
     
     @FXML
     private Button car_Run;
@@ -50,6 +53,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     void acaodoBotaoRun(ActionEvent event) throws InterruptedException {
+        System.out.println("Controller aquii:" + sis.test());
         setOrigin();
         rodar();
         fg = 1;
@@ -58,8 +62,8 @@ public class FXMLDocumentController implements Initializable {
     public void rodar(){
         status_car_red.setText("Corrennndoo");
         status_car_green.setText("PitStop");
-        status_car_yellow.setText("Parado");
-                
+        status_car_yellow.setText("Parado");  
+        changeWeather();
         progressBar();
         carRed();
         carYellow();
@@ -146,6 +150,8 @@ public class FXMLDocumentController implements Initializable {
            car_red.setRotate(r_red_origin);
            x = x_red_origin; y= y_red_origin; r= r_red_origin;
            flag = 0;
+           fuel_car_red.setProgress(1.0);
+           pgb_red.setValor(1.0f);
         }
         
     }
@@ -154,7 +160,9 @@ public class FXMLDocumentController implements Initializable {
     
     public void carYellow(){
     
-        car_ylw.setX(x);
+        
+        if(x > 135 && x < 310) car_ylw.setX(x-15);
+        else car_ylw.setX(x);
         
        //Movimento positivo:
         if( x >= 250 && x <= 310 && flag == 0){
@@ -170,7 +178,7 @@ public class FXMLDocumentController implements Initializable {
              if(y > -170) y -= 13;
         }
 
-        System.out.println("Layout X : " + car_ylw.getX() + "Y: " + car_ylw.getY() + "Rot: " + car_ylw.getRotate());
+        System.out.println("Yellow - X : " + car_ylw.getX() + "Y: " + car_ylw.getY() + "Rot: " + car_ylw.getRotate());
         if(x <= 250 && flag == 0 ) x += 25;
         else if (x > 250 && x <= 310 && flag == 0) x += 3; 
         
@@ -209,6 +217,8 @@ public class FXMLDocumentController implements Initializable {
  
         }
         
+        
+      //Flag - contador de volta:  
         if(flag == 3){
            System.out.println("entrou");
            car_ylw.setX(0.0);
@@ -216,17 +226,45 @@ public class FXMLDocumentController implements Initializable {
            car_ylw.setRotate(r_red_origin);
            x = x_red_origin; y= y_red_origin; r= r_red_origin;
            flag = 0;
+           fuel_car_yellow.setProgress(1.0);
+           pgb_yellow.setValor(1.0f);
         }
         
     }
     
-    
-    
     public void startWeather(){
+        this.weather_sun.setVisible(false);
+        this.weather_rain.setVisible(false);    
         this.weather_fog.setVisible(false);
-        this.weather_sun.setVisible(true);
-        this.weather_rain.setVisible(false);
+    }   
+    
+    
+    public void changeWeather(){
+            
+        switch (sis.weather()){
 
+            case 1:  
+                 this.weather_sun.setVisible(false);
+                 this.weather_rain.setVisible(false);    
+                 this.weather_fog.setVisible(true);
+                 if(this.weather_fog.isVisible()) status_weather.setText("Neblina");
+                 break;
+
+            case 2:     
+                this.weather_rain.setVisible(false); 
+                this.weather_fog.setVisible(false);
+                this.weather_sun.setVisible(true);
+                if(this.weather_sun.isVisible()) status_weather.setText("Ensolarado");
+                break;
+
+            case 3:  
+                this.weather_fog.setVisible(false);
+                this.weather_sun.setVisible(false);
+                this.weather_rain.setVisible(true);
+                if(this.weather_rain.isVisible()) status_weather.setText("Chuva Forte");
+                break; 
+        }
+        
     }
     
     public void setOrigin(){
@@ -235,20 +273,14 @@ public class FXMLDocumentController implements Initializable {
         y_red_origin = (float) car_red.getY();
         r_red_origin = (float) car_red.getRotate();
      }
-    
-    
-    
-    
-    
+  
     }
     
-    
-    
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        startWeather();
-
     }    
         
     
