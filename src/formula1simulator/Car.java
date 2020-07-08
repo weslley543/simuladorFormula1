@@ -14,7 +14,8 @@ import java.util.logging.Logger;
  *
  * @author weslley
  */
-public class Car extends Thread implements Comparable <Car>, EventListener {
+public class Car extends Thread implements Comparable<Car>, EventListener {
+
     private int identificador;
     private String team;
     private int round;
@@ -23,102 +24,56 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
     private boolean runState;
     private boolean whelsState;
     long endRun;
-    private String event; 
-    
-    public Car(String team, int id){
+    private String event;
+
+    public Car(String team, int id) {
         this.fuel = 1.0f;
         this.team = team;
         this.state = 0;
-        this.round =0;
+        this.round = 0;
         this.whelsState = true;
         this.event = "";
     }
-    
+
     /**
      *
      */
     @Override
-    public void run(){
+    public void run() {
         int i = this.round;
         int rounds = 50;
         long ini = System.currentTimeMillis();
         this.runState = true;
-        while(i<rounds){
-        
-            this.state = (int)Math.floor(Math.random()*2);
-            
-            switch (this.state){
-                case 0 :   
-                    this.state = (int)Math.floor(Math.random()*3);
-                    switch(this.state){
-                        case 0 :
-                            this.setEvent("Chuva");
-                            {
-                                try {
-                                    this.sleep(50);
-                                } catch (InterruptedException ex) {
-                                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            }
-                            break;
-                            
-                        case 1 :
-                            this.setEvent("Neblina");
-                            {
-                                try {
-                                    this.sleep(100);
-                                } catch (InterruptedException ex) {
-                                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            }
-                            break;
-                        case 2 : 
-                            this.setEvent("Chuva com granizo");
-                            {
-                               try {
-                                this.sleep(200);
-                               } catch (InterruptedException ex) {
-                                   Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            }
-                            break;
-                    }
-                    break;
-                    
-               
-                case 1 : 
-                    if(this.fuel<0.2){
-                        this.setEvent("Reabastecendo");
-                        try {
-                            Car.sleep(1000);
-                            this.putFuel();
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }else{
-                        this.setEvent("Troca de Pneu");
-                         try {
-                            this.sleep(5000);
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                break;
-                
-                 
+        while (i < rounds) {
+
+            if (this.fuel < 0.2) {
+                this.setEvent("Reabastecendo");
+                try {
+                    Car.sleep(1000);
+                    this.putFuel();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                this.setEvent("Troca de Pneu");
+                try {
+                    this.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            
-            this.fuel = this.fuel * (float)Math.random()/0.9f;
-            i++;
-            
+            break;
+
         }
-       
-        this.runState = false;
-        
+
+        this.fuel = this.fuel * (float) Math.random() / 0.9f;
+        i++;
     }
-    
-    public void putFuel(){
-        this.setFuel(round);    }
+
+    public void putFuel() {
+        this.setFuel(round);
+    }
+
     public int identificador() {
         return identificador;
     }
@@ -150,30 +105,25 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
-    
-    public void setEvent(String event){
+
+    public void setEvent(String event) {
         this.event = event;
     }
-    
-    public String getEvent(){
+
+    public String getEvent() {
         return this.event;
     }
 
     @Override
     public int compareTo(Car t) {
-        if(this.endRun < t.endRun){
-         return -1;
+        if (this.endRun < t.endRun) {
+            return -1;
         }
-        if(this.endRun> t.endRun){
+        if (this.endRun > t.endRun) {
             return 1;
         }
-        
+
         return 0;
     }
 
-   
-
-    
-
-    
 }
