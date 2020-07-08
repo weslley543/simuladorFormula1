@@ -28,7 +28,6 @@ public class FXMLDocumentController implements Initializable {
     public static float x_red_origin, y_red_origin, r_red_origin;
     static int fg=0;
     progressBar pgb_red  = new progressBar();
-    progressBar pgb_green = new progressBar();
     progressBar pgb_yellow = new progressBar();
     mover_cars mv = new mover_cars();
     
@@ -44,7 +43,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     
-    private Label status_car_red, status_car_yellow, status_car_green, status_weather;
+    private Label status_car_red, status_car_yellow, status_weather;
     
     @FXML
     private Label count_voltas, total_voltas;
@@ -64,7 +63,6 @@ public class FXMLDocumentController implements Initializable {
     
     public void rodar(){
         status_car_red.setText(sis.getCarStatus());
-        status_car_green.setText(sis.getCarStatus());
         status_car_yellow.setText(sis.getCarStatus());  
         progressBar();
         carRed();
@@ -78,14 +76,12 @@ public class FXMLDocumentController implements Initializable {
     public void progressBar(){
         pgb_red.diminuirFuel(0.025f); 
         pgb_yellow.diminuirFuel(0.025f);
-        pgb_green.diminuirFuel(1.0f);
         
 
         //System.out.println("Valor-ProgressBar > RED: " + pgb_red.getValor() + "> GREEN:" + pgb_green.getValor() + "> Yellow: "+ pgb_yellow.getValor());
         
         fuel_car_red.setProgress(pgb_red.getValor());
         fuel_car_yellow.setProgress(pgb_yellow.getValor());
-        fuel_car_green.setProgress(pgb_green.getValor());      
 
     }
     
