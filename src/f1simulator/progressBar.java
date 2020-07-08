@@ -20,8 +20,12 @@ public class progressBar extends Thread {
      return this.valor;
  }
  
- public void setValor(float lessFuel){
-     this.valor = this.valor - lessFuel;
+ public void setValor(float valor){
+     this.valor = valor;
+ }
+ 
+ public void diminuirFuel(float lessFuel){
+     this.valor -= lessFuel;
  }
     
  @Override

@@ -47,6 +47,9 @@ public class FXMLDocumentController implements Initializable {
     private Label status_car_red, status_car_yellow, status_car_green, status_weather;
     
     @FXML
+    private Label count_voltas, total_voltas;
+    
+    @FXML
     private Button car_Run;
 
     
@@ -60,10 +63,9 @@ public class FXMLDocumentController implements Initializable {
      }
     
     public void rodar(){
-        status_car_red.setText("Corrennndoo");
-        status_car_green.setText("PitStop");
-        status_car_yellow.setText("Parado");  
-        changeWeather();
+        status_car_red.setText(sis.getCarStatus());
+        status_car_green.setText(sis.getCarStatus());
+        status_car_yellow.setText(sis.getCarStatus());  
         progressBar();
         carRed();
         carYellow();
@@ -74,15 +76,17 @@ public class FXMLDocumentController implements Initializable {
     
     
     public void progressBar(){
-        pgb_red.setValor(0.020f);  
-        pgb_green.setValor(0.070f);
-        pgb_yellow.setValor(0.052f);
+        pgb_red.diminuirFuel(0.025f); 
+        pgb_yellow.diminuirFuel(0.025f);
+        pgb_green.diminuirFuel(1.0f);
+        
 
         //System.out.println("Valor-ProgressBar > RED: " + pgb_red.getValor() + "> GREEN:" + pgb_green.getValor() + "> Yellow: "+ pgb_yellow.getValor());
         
-        fuel_car_green.setProgress(pgb_green.getValor());      
         fuel_car_red.setProgress(pgb_red.getValor());
         fuel_car_yellow.setProgress(pgb_yellow.getValor());
+        fuel_car_green.setProgress(pgb_green.getValor());      
+
     }
     
     
@@ -143,15 +147,16 @@ public class FXMLDocumentController implements Initializable {
  
         }
         
+        
         if(flag == 3){
            System.out.println("entrou");
-           car_red.setX(0.0);
+           pgb_red.setValor(1.0f);
+           car_red.setX(8.0);
            car_red.setY(0.0);
            car_red.setRotate(r_red_origin);
            x = x_red_origin; y= y_red_origin; r= r_red_origin;
            flag = 0;
-           fuel_car_red.setProgress(1.0);
-           pgb_red.setValor(1.0f);
+        
         }
         
     }
@@ -226,11 +231,15 @@ public class FXMLDocumentController implements Initializable {
            car_ylw.setRotate(r_red_origin);
            x = x_red_origin; y= y_red_origin; r= r_red_origin;
            flag = 0;
-           fuel_car_yellow.setProgress(1.0);
            pgb_yellow.setValor(1.0f);
+           pgb_red.setValor(1.0f);
+           sis.countVoltas(0);
+           count_voltas.setText(String.valueOf(sis.getCount()));
+           changeWeather();
         }
         
     }
+    
     
     public void startWeather(){
         this.weather_sun.setVisible(false);
@@ -243,21 +252,21 @@ public class FXMLDocumentController implements Initializable {
             
         switch (sis.weather()){
 
-            case 1:  
+            case 0:  
                  this.weather_sun.setVisible(false);
                  this.weather_rain.setVisible(false);    
                  this.weather_fog.setVisible(true);
                  if(this.weather_fog.isVisible()) status_weather.setText("Neblina");
                  break;
 
-            case 2:     
+            case 1:     
                 this.weather_rain.setVisible(false); 
                 this.weather_fog.setVisible(false);
                 this.weather_sun.setVisible(true);
                 if(this.weather_sun.isVisible()) status_weather.setText("Ensolarado");
                 break;
 
-            case 3:  
+            case 2:  
                 this.weather_fog.setVisible(false);
                 this.weather_sun.setVisible(false);
                 this.weather_rain.setVisible(true);
@@ -276,11 +285,14 @@ public class FXMLDocumentController implements Initializable {
   
     }
     
-   
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       startWeather();
+       changeWeather();
+       sis.setTotalVoltas();
+       total_voltas.setText(String.valueOf(sis.getTotalVolta()));
+       
     }    
         
     

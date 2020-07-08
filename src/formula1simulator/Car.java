@@ -109,7 +109,6 @@ public class Car extends Thread implements Comparable <Car>, EventListener {
             }
             
             this.fuel = this.fuel * (float)Math.random()/0.9f;
-         
             i++;
             
         }
