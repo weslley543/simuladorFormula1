@@ -43,31 +43,32 @@ public class Car extends Thread implements Comparable<Car>, EventListener {
         int i = this.round;
         int rounds = 50;
         long ini = System.currentTimeMillis();
-        this.runState = true;
-        while (i < rounds) {
 
+        while (i < rounds) {
+            this.state = (int) Math.floor(Math.random() * 2);
             if (this.fuel < 0.2) {
                 this.setEvent("Reabastecendo");
                 try {
                     Car.sleep(1000);
                     this.putFuel();
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Car.class.getName())
+                            .log(Level.SEVERE, null, ex);
                 }
             } else {
                 this.setEvent("Troca de Pneu");
                 try {
                     this.sleep(5000);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Car.class.getName())
+                            .log(Level.SEVERE, null, ex);
                 }
             }
-            break;
 
+            this.fuel = this.fuel * (float) Math.random() / 0.9f;
+            i++;
         }
 
-        this.fuel = this.fuel * (float) Math.random() / 0.9f;
-        i++;
     }
 
     public void putFuel() {
