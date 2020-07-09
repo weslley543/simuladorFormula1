@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author weslley
  */
-public class Run {
+public class Run extends Thread {
 
     public ArrayList<Car> cars;
     public String gpPlace;
@@ -57,21 +57,27 @@ public class Run {
     }
 
     public void setEevents(String car1, String car2) {
+        
         this.carEvents[0] = car1;
         this.carEvents[1] = car2;
     }
 
-    public Boolean initRace() {
-        for (Car car : cars) {
+    public void initRace() {
+      
+    }
+
+    @Override
+    public void run() {
+          for (Car car : cars) {
 
             car.start();
         }
-        Boolean terminou = false;
+       
         while (cars.get(0).isAlive() || cars.get(1).isAlive()) {
-            System.out.println(cars.get(0).getEvent());
-            setEevents(cars.get(0).getEvent(),cars.get(1).getEvent());
+            
+            
             this.state = (int) Math.floor(Math.random() * 2);
-            //System.out.println(this.getWheater());
+            
             switch (this.state) {
                 case 0:
                     this.state = (int) Math.floor(Math.random() * 3);
@@ -121,9 +127,6 @@ public class Run {
             }
 
         }
-
-        terminou = false;
-        return terminou;
     }
 
 }

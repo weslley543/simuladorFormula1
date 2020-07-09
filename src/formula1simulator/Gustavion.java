@@ -6,12 +6,15 @@
 package formula1simulator;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author wesll
  */
-public class Gustavion extends javax.swing.JFrame {
+public class Gustavion extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form Gustavion
@@ -21,11 +24,102 @@ public class Gustavion extends javax.swing.JFrame {
         cars.add(new Car("Ferrari", 1));
         cars.add(new Car("Williams", 1));
 
-        Run run = new Run(cars, "malasia");
-        jTextArea1.setText("Gustavooo\n");
-        while(!run.initRace()){
-            jTextArea1.append("Gustavooo\n");
-        }
+        System.out.println("Iniciar");
+
+        new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Antes da Thread");
+                jTextArea1.setText("");
+                jTextArea2.setText("");
+                cars.get(0).start();
+                jLabel2.setText("");
+                while (cars.get(0).isAlive()) {
+                    if (cars.get(0).isTurnState()) {
+                        jTextArea1.append(cars.get(0).getEvent() + "\n");
+                        jProgressBar1.setValue(cars.get(0).getFuel());
+                        jLabel3.setText(Integer.toString(cars.get(0).getRound()));
+                    }
+                    
+                    if(cars.get(1).isTurnState()){
+                        jTextArea2.append(cars.get(1).getEvent() + "\n");
+                    }
+                    int weatherState = new Random().nextInt(4);
+                    
+                    if(cars.get(1).isTurnState() || cars.get(1).isTurnState()){
+                        switch(weatherState){
+                        case 0 : 
+                            jLabel2.setText("Chuva");
+                            break;
+                        case 1 : 
+                            jLabel2.setText("Granizo");
+                            break;
+                        case 2 :
+                            jLabel2.setText("Sol");
+                            break;
+                        case 3 :
+                            jLabel2.setText("Neblina");
+                            break;
+                        case 4 :
+                            jLabel2.setText("Furacao");
+                            break;
+                    }
+                    } 
+                    
+                    
+                    
+                }
+
+            }
+        }.start();
+        new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Antes da Thread");
+                jTextArea1.setText("");
+                jTextArea2.setText("");
+                cars.get(1).start();
+                jLabel2.setText("");
+                while (cars.get(1).isAlive()) {
+                    
+                    
+                    if(cars.get(1).isTurnState()){
+                        jTextArea2.append(cars.get(1).getEvent() + "\n");
+                        jProgressBar2.setValue(cars.get(1).getFuel());
+                         jLabel6.setText(Integer.toString(cars.get(0).getRound()));
+                    }
+                    int weatherState = new Random().nextInt(4);
+                    
+                    if(cars.get(1).isTurnState() || cars.get(1).isTurnState()){
+                        switch(weatherState){
+                        case 0 : 
+                            jLabel2.setText("Chuva");
+                            
+                            break;
+                        case 1 : 
+                            jLabel2.setText("Granizo");
+                            break;
+                        case 2 :
+                            jLabel2.setText("Sol");
+                            break;
+                        case 3 :
+                            jLabel2.setText("Neblina");
+                            break;
+                        case 4 :
+                            jLabel2.setText("Furacao");
+                            break;
+                    }
+                    } 
+                    
+                    
+                    
+                }
+
+            }
+        }.start();
+
     }
 
 
@@ -45,6 +139,18 @@ public class Gustavion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,32 +165,109 @@ public class Gustavion extends javax.swing.JFrame {
             }
         });
 
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jLabel1.setText("Clima");
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("0");
+
+        jLabel4.setText("/");
+
+        jLabel5.setText("50");
+
+        jLabel6.setText("0");
+
+        jLabel7.setText("/");
+
+        jLabel8.setText("50");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(129, 129, 129))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(38, 38, 38)))
+                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(4, 4, 4)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       iniciarCorrida();
+       
+        iniciarCorrida();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -124,7 +307,24 @@ public class Gustavion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

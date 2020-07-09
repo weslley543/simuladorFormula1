@@ -7,6 +7,7 @@ package formula1simulator;
 
 import java.util.Comparator;
 import java.util.EventListener;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,25 +15,25 @@ import java.util.logging.Logger;
  *
  * @author weslley
  */
-public class Car extends Thread implements Comparable<Car>, EventListener {
+public class Car extends Thread implements  EventListener {
 
     private int identificador;
     private String team;
     private int round;
-    private float fuel;
+    private int fuel;
     private int state;
     private boolean runState;
-    private boolean whelsState;
-    long endRun;
+    private boolean turnState;
     private String event;
 
     public Car(String team, int id) {
-        this.fuel = 1.0f;
+        this.fuel = 100;
         this.team = team;
         this.state = 0;
         this.round = 0;
-        this.whelsState = true;
+        this.turnState = false;
         this.event = "";
+        
     }
 
     /**
@@ -41,15 +42,17 @@ public class Car extends Thread implements Comparable<Car>, EventListener {
     @Override
     public void run() {
         int i = this.round;
-        int rounds = 50;
+        int round = 50;
         long ini = System.currentTimeMillis();
-
-        while (i < rounds) {
+        
+        while (this.round <50) {
+            this.setTurnState(false);
             this.state = (int) Math.floor(Math.random() * 2);
-            if (this.fuel < 0.2) {
+            
+            if (this.fuel < 20) {
                 this.setEvent("Reabastecendo");
                 try {
-                    Car.sleep(1000);
+                    Car.sleep(50);
                     this.putFuel();
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Car.class.getName())
@@ -58,15 +61,18 @@ public class Car extends Thread implements Comparable<Car>, EventListener {
             } else {
                 this.setEvent("Troca de Pneu");
                 try {
-                    this.sleep(5000);
+                    this.sleep(125);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Car.class.getName())
                             .log(Level.SEVERE, null, ex);
                 }
             }
-
-            this.fuel = this.fuel * (float) Math.random() / 0.9f;
-            i++;
+            
+            Random aux = new Random();
+           
+            this.setFuel(aux.nextInt(100));
+            this.round++;
+            this.setTurnState(true);
         }
 
     }
@@ -99,7 +105,7 @@ public class Car extends Thread implements Comparable<Car>, EventListener {
         this.round = round;
     }
 
-    public float getFuel() {
+    public int getFuel() {
         return fuel;
     }
 
@@ -115,16 +121,14 @@ public class Car extends Thread implements Comparable<Car>, EventListener {
         return this.event;
     }
 
-    @Override
-    public int compareTo(Car t) {
-        if (this.endRun < t.endRun) {
-            return -1;
-        }
-        if (this.endRun > t.endRun) {
-            return 1;
-        }
-
-        return 0;
+    public boolean isTurnState() {
+        return turnState;
     }
+
+    public void setTurnState(boolean turnState) {
+        this.turnState = turnState;
+    }
+
+    
 
 }

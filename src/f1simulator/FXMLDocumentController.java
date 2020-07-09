@@ -62,22 +62,34 @@ public class FXMLDocumentController implements Initializable {
 //        setOrigin();
 //        rodar();
 //        fg = 1;;
-          
-       iniciarCorrida();
+
+        iniciarCorrida();
     }
-    
-    
-    public void iniciarCorrida(){
+
+    public void iniciarCorrida() {
         ArrayList<Car> cars = new ArrayList();
         cars.add(new Car("Ferrari", 1));
         cars.add(new Car("Williams", 1));
-        
+
         Run run = new Run(cars, "malasia");
         textArea1.setText("Gustavo");
-        
-        while(!run.initRace()){;
-            textArea1.appendText("Gustavion");
-        };
+
+        new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Antes da Thread");
+                run.start();
+                textArea1.setText("");
+                while (run.isAlive()) {
+                    System.out.println("Thread Rodadno");
+                    String []aux1 = run.returnEevents();
+                    textArea1.appendText(aux1[0]+"\n");
+
+                }
+
+            }
+        }.start();
     }
 
     public void rodar() {
