@@ -5,13 +5,21 @@
  */
 package formula1simulator;
 
+import f1simulator.*;
+
 /**
  *
- * @author wesll
+ * @author GustavoS
  */
-public class Main {
-    public static void main(String[] args) {
-        UIRACER ui = new UIRACER();
-        ui.setVisible(true);
+public class timer extends Thread {
+    
+    
+    public void run(){
+        while(true){
+            
+        }
+    
     }
+    
+    
 }

@@ -1,0 +1,985 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package formula1simulator;
+
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
+
+/**
+ *
+ * @author wesll
+ */
+public class UIRACER extends javax.swing.JFrame implements Runnable {
+
+    /**
+     * Creates new form Gustavion
+     */
+    public void iniciarCorrida() {
+        ArrayList<Car> cars = new ArrayList();
+        cars.add(new Car("Ferrari", 1));
+        cars.add(new Car("Williams", 1));
+        System.out.println("Iniciar");
+                       
+        new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Antes da Thread");
+                jTextArea1.setText("");
+                jTextArea2.setText("");
+                cars.get(0).start();
+                jLabel2.setText("");
+                while (cars.get(0).isAlive()) {
+                    if (cars.get(0).isTurnState()) {
+                        jTextArea1.append(cars.get(0).getEvent() + "\n");
+                        jProgressBar1.setValue(cars.get(0).getFuel());
+                        jLabel3.setText(Integer.toString(cars.get(0).getRound()));
+                    }
+                    
+                    if(cars.get(1).isTurnState()){
+                        jTextArea2.append(cars.get(1).getEvent() + "\n");
+                    }
+                    int weatherState = new Random().nextInt(4);
+                    
+                    if(cars.get(1).isTurnState() || cars.get(1).isTurnState()){
+                        switch(weatherState){
+                        case 0 : 
+                            jLabel2.setText("Chuva");
+                            break;
+                        case 1 : 
+                            jLabel2.setText("Granizo");
+                            break;
+                        case 2 :
+                            jLabel2.setText("Sol");
+                            break;
+                        case 3 :
+                            jLabel2.setText("Neblina");
+                            break;
+                        case 4 :
+                            jLabel2.setText("Furacao");
+                            break;
+                    }
+                    } 
+                    
+                    
+                    
+                }
+
+            }
+        }.start();
+        new Thread() {
+
+            @Override
+            public void run() {
+                System.out.println("Antes da Thread");
+                jTextArea1.setText("");
+                jTextArea2.setText("");
+                cars.get(1).start();
+                jLabel2.setText("");
+                while (cars.get(1).isAlive()) {
+                    
+                    
+                    if(cars.get(1).isTurnState()){
+                        jTextArea2.append(cars.get(1).getEvent() + "\n");
+                        jProgressBar2.setValue(cars.get(1).getFuel());
+                         jLabel6.setText(Integer.toString(cars.get(0).getRound()));
+                    }
+                    int weatherState = new Random().nextInt(4);
+                    
+                    if(cars.get(1).isTurnState() || cars.get(1).isTurnState()){
+                        switch(weatherState){
+                        case 0 : 
+                            jLabel2.setText("Chuva");
+                            choseWeather("Chuva");
+                            
+                            break;
+                        case 1 : 
+                            jLabel2.setText("Granizo");
+                            choseWeather("Granizo");
+                            break;
+                        case 2 :
+                            jLabel2.setText("Sol");
+                            choseWeather("Sol");
+                            break;
+                        case 3 :
+                            jLabel2.setText("Neblina");
+                            choseWeather("Neblina");
+                            break;
+                        case 4 :
+                            jLabel2.setText("Furacao");
+                            choseWeather("Furacao");
+                            break;
+                    }
+                    } 
+                    
+                    
+                    
+                }
+
+            }
+        }.start();
+
+    }
+
+
+    public UIRACER() {
+        initComponents();
+        startFrame();
+        CardLayout c1 = (CardLayout) card.getLayout();
+        c1.show(card, "def_eqp");
+        this.setLocationRelativeTo(null);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        card = new javax.swing.JPanel();
+        jPanel4def_equipes = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        nome_eqp1 = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        nome_eqp1_mec1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        nome_eqp1_mec2 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        nome_eqp1_mec4 = new javax.swing.JTextField();
+        nome_eqp1_mec3 = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        nome_eqp1_eng = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        nome_eqp1_piloto = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        nome_eqp2 = new javax.swing.JTextField();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        nome_eqp2_mec5 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        nome_eqp2_mec6 = new javax.swing.JTextField();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        nome_eqp2_mec7 = new javax.swing.JTextField();
+        nome_eqp2_mec8 = new javax.swing.JTextField();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        nome_eqp2_eng1 = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        nome_eqp2_piloto1 = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        corrida = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jL_countVoltas = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jL_TotVoltas = new javax.swing.JLabel();
+        jL_Flag1 = new javax.swing.JLabel();
+        jL_Flag2 = new javax.swing.JLabel();
+        icon_sun = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        icon_rain = new javax.swing.JLabel();
+        icon_fog = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(993, 827));
+        setMinimumSize(new java.awt.Dimension(993, 827));
+        setPreferredSize(new java.awt.Dimension(993, 827));
+        getContentPane().setLayout(null);
+
+        card.setLayout(new java.awt.CardLayout());
+
+        jPanel4def_equipes.setMaximumSize(new java.awt.Dimension(943, 664));
+        jPanel4def_equipes.setMinimumSize(new java.awt.Dimension(943, 664));
+        jPanel4def_equipes.setPreferredSize(new java.awt.Dimension(943, 664));
+        jPanel4def_equipes.setLayout(null);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+
+        jLabel20.setText("Nome Equipe");
+
+        nome_eqp1.setText("jTextField1");
+        nome_eqp1.setAutoscrolls(false);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos")));
+
+        jLabel22.setText("Nome");
+
+        nome_eqp1_mec1.setText("jTextField1");
+
+        jLabel23.setText("Nome");
+
+        nome_eqp1_mec2.setText("jTextField1");
+
+        jLabel24.setText("Nome");
+
+        jLabel25.setText("Nome");
+
+        nome_eqp1_mec4.setText("jTextField1");
+
+        nome_eqp1_mec3.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel22)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp1_mec1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel23)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp1_mec2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel24)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp1_mec3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel25)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp1_mec4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel22)
+                    .add(nome_eqp1_mec1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel23)
+                    .add(nome_eqp1_mec2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel24)
+                    .add(nome_eqp1_mec3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel25)
+                    .add(nome_eqp1_mec4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos"), "Engenheiro"));
+
+        jLabel26.setText("Nome");
+
+        nome_eqp1_eng.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel26)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(nome_eqp1_eng, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel6Layout.createSequentialGroup()
+                .add(25, 25, 25)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel26)
+                    .add(nome_eqp1_eng, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Piloto"));
+        jPanel7.setAutoscrolls(true);
+
+        jLabel21.setText("Nome");
+
+        nome_eqp1_piloto.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel7Layout = new org.jdesktop.layout.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel21)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 17, Short.MAX_VALUE)
+                .add(nome_eqp1_piloto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel21)
+                    .add(nome_eqp1_piloto, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        org.jdesktop.layout.GroupLayout jPanel8Layout = new org.jdesktop.layout.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel8Layout.createSequentialGroup()
+                .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel8Layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(jLabel20)
+                        .add(18, 18, 18)
+                        .add(nome_eqp1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 260, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel8Layout.createSequentialGroup()
+                        .add(15, 15, 15)
+                        .add(jPanel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(19, 19, 19))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel8Layout.createSequentialGroup()
+                .add(32, 32, 32)
+                .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel8Layout.createSequentialGroup()
+                        .add(2, 2, 2)
+                        .add(jLabel20))
+                    .add(nome_eqp1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(24, 24, 24)
+                .add(jPanel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(29, 29, 29))
+        );
+
+        jPanel4def_equipes.add(jPanel8);
+        jPanel8.setBounds(20, 70, 393, 530);
+
+        jButton2.setText("Cadastrar Equipes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4def_equipes.add(jButton2);
+        jButton2.setBounds(410, 630, 140, 30);
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+
+        jLabel34.setText("Nome Equipe");
+
+        nome_eqp2.setText("jTextField1");
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos")));
+
+        jLabel35.setText("Nome");
+
+        nome_eqp2_mec5.setText("jTextField1");
+
+        jLabel36.setText("Nome");
+
+        nome_eqp2_mec6.setText("jTextField1");
+
+        jLabel37.setText("Nome");
+
+        jLabel38.setText("Nome");
+
+        nome_eqp2_mec7.setText("jTextField1");
+
+        nome_eqp2_mec8.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel14Layout = new org.jdesktop.layout.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel14Layout.createSequentialGroup()
+                        .add(jLabel35)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp2_mec5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel14Layout.createSequentialGroup()
+                        .add(jLabel36)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp2_mec6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel14Layout.createSequentialGroup()
+                        .add(jLabel37)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp2_mec8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel14Layout.createSequentialGroup()
+                        .add(jLabel38)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(nome_eqp2_mec7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel35)
+                    .add(nome_eqp2_mec5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel36)
+                    .add(nome_eqp2_mec6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel37)
+                    .add(nome_eqp2_mec8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel14Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel38)
+                    .add(nome_eqp2_mec7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos"), "Engenheiro"));
+
+        jLabel39.setText("Nome");
+
+        nome_eqp2_eng1.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel15Layout = new org.jdesktop.layout.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel39)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(nome_eqp2_eng1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(19, 19, 19))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel15Layout.createSequentialGroup()
+                .add(25, 25, 25)
+                .add(jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel39)
+                    .add(nome_eqp2_eng1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Piloto"));
+
+        jLabel40.setText("Nome");
+
+        nome_eqp2_piloto1.setText("jTextField1");
+
+        org.jdesktop.layout.GroupLayout jPanel16Layout = new org.jdesktop.layout.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel40)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 17, Short.MAX_VALUE)
+                .add(nome_eqp2_piloto1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel40)
+                    .add(nome_eqp2_piloto1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        org.jdesktop.layout.GroupLayout jPanel13Layout = new org.jdesktop.layout.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel13Layout.createSequentialGroup()
+                .add(jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel13Layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(jLabel34)
+                        .add(18, 18, 18)
+                        .add(nome_eqp2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 260, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel13Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel13Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel16, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel13Layout.createSequentialGroup()
+                .add(32, 32, 32)
+                .add(jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel13Layout.createSequentialGroup()
+                        .add(2, 2, 2)
+                        .add(jLabel34))
+                    .add(nome_eqp2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(jPanel16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jPanel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jPanel15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(30, 30, 30))
+        );
+
+        jPanel4def_equipes.add(jPanel13);
+        jPanel13.setBounds(530, 70, 393, 530);
+
+        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel27.setFont(new java.awt.Font("Freestyle Script", 1, 48)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel27.setText("DEFININDO EQUIPES");
+
+        org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(337, Short.MAX_VALUE)
+                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 390, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(213, 213, 213))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
+                .add(0, 13, Short.MAX_VALUE)
+                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel4def_equipes.add(jPanel9);
+        jPanel9.setBounds(0, 0, 940, 60);
+
+        card.add(jPanel4def_equipes, "def_eqp");
+
+        corrida.setMaximumSize(new java.awt.Dimension(989, 768));
+        corrida.setMinimumSize(new java.awt.Dimension(989, 768));
+        corrida.setName(""); // NOI18N
+        corrida.setPreferredSize(new java.awt.Dimension(989, 768));
+        corrida.setLayout(null);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        corrida.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 570, 370, 179);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        corrida.add(jScrollPane2);
+        jScrollPane2.setBounds(600, 570, 370, 179);
+        corrida.add(jProgressBar1);
+        jProgressBar1.setBounds(90, 540, 310, 24);
+        corrida.add(jProgressBar2);
+        jProgressBar2.setBounds(670, 540, 300, 26);
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("0");
+        corrida.add(jLabel3);
+        jLabel3.setBounds(170, 520, 40, 24);
+
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setText("/");
+        corrida.add(jLabel4);
+        jLabel4.setBounds(220, 520, 5, 24);
+
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setText("0");
+        corrida.add(jLabel6);
+        jLabel6.setBounds(760, 520, 40, 24);
+
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setText("/");
+        corrida.add(jLabel7);
+        jLabel7.setBounds(820, 520, 5, 24);
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setText("50");
+        corrida.add(jLabel8);
+        jLabel8.setBounds(870, 520, 20, 24);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_red.png"))); // NOI18N
+        corrida.add(jLabel9);
+        jLabel9.setBounds(310, 410, 60, 36);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_yellow.png"))); // NOI18N
+        corrida.add(jLabel10);
+        jLabel10.setBounds(400, 440, 53, 35);
+
+        jL_countVoltas.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
+        jL_countVoltas.setText("0");
+        corrida.add(jL_countVoltas);
+        jL_countVoltas.setBounds(450, 150, 40, 50);
+
+        jLabel13.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
+        jLabel13.setText("/");
+        corrida.add(jLabel13);
+        jLabel13.setBounds(490, 140, 30, 60);
+
+        jL_TotVoltas.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
+        jL_TotVoltas.setText("0");
+        corrida.add(jL_TotVoltas);
+        jL_TotVoltas.setBounds(530, 140, 40, 60);
+
+        jL_Flag1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/flags.png"))); // NOI18N
+        corrida.add(jL_Flag1);
+        jL_Flag1.setBounds(210, 150, 94, 71);
+
+        jL_Flag2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/flags.png"))); // NOI18N
+        corrida.add(jL_Flag2);
+        jL_Flag2.setBounds(670, 160, 94, 71);
+
+        icon_sun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/sun.png"))); // NOI18N
+        corrida.add(icon_sun);
+        icon_sun.setBounds(840, 40, 73, 73);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/track_racer.png"))); // NOI18N
+        corrida.add(jLabel11);
+        jLabel11.setBounds(220, 190, 571, 308);
+
+        icon_rain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/rain.png"))); // NOI18N
+        corrida.add(icon_rain);
+        icon_rain.setBounds(840, 30, 80, 80);
+
+        icon_fog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/fog.png"))); // NOI18N
+        corrida.add(icon_fog);
+        icon_fog.setBounds(840, 30, 80, 80);
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_red.png"))); // NOI18N
+        corrida.add(jLabel14);
+        jLabel14.setBounds(30, 530, 54, 36);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_yellow.png"))); // NOI18N
+        corrida.add(jLabel12);
+        jLabel12.setBounds(600, 530, 53, 35);
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/icons8-palm-tree-48.png"))); // NOI18N
+        corrida.add(jLabel15);
+        jLabel15.setBounds(400, 320, 60, 80);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/icons8-palm-tree-48.png"))); // NOI18N
+        corrida.add(jLabel16);
+        jLabel16.setBounds(560, 320, 60, 80);
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/icons8-palm-tree-48.png"))); // NOI18N
+        corrida.add(jLabel18);
+        jLabel18.setBounds(480, 320, 60, 80);
+
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setText("50");
+        corrida.add(jLabel5);
+        jLabel5.setBounds(270, 520, 20, 24);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(null);
+
+        jLabel19.setFont(new java.awt.Font("Castellar", 1, 48)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel19.setText("GRANd PRIX ");
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(320, 10, 400, 60);
+
+        jLabel17.setFont(new java.awt.Font("Castellar", 1, 48)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 204, 0));
+        jLabel17.setText("GUSWES");
+        jPanel2.add(jLabel17);
+        jLabel17.setBounds(400, 70, 250, 50);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Clima");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(740, 10, 80, 24);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("jLabel2");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(850, 10, 130, 24);
+
+        jButton1.setForeground(new java.awt.Color(0, 0, 102));
+        jButton1.setText("Taca-le pau nesse carrinho");
+        jButton1.setAutoscrolls(true);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(30, 40, 190, 50);
+
+        corrida.add(jPanel2);
+        jPanel2.setBounds(0, 0, 990, 130);
+
+        card.add(corrida, "corrida");
+
+        getContentPane().add(card);
+        card.setBounds(0, 0, 989, 782);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        iniciarCorrida();
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //ENVIAR O NOME DAS EQUIPES E DADOS DE ENTRADA
+        String[] data1, data2;
+        data1 = defEquipes(nome_eqp1.getText(), nome_eqp1_piloto.getText(), nome_eqp1_mec1.getText(), 
+                            nome_eqp1_mec2.getText(), nome_eqp1_mec3.getText(), nome_eqp1_mec4.getText(), 
+                            nome_eqp1_eng.getText());
+       
+        data2 = defEquipes(nome_eqp2.getText(), nome_eqp2_piloto1.getText(), nome_eqp2_mec5.getText(), 
+                            nome_eqp2_mec6.getText(), nome_eqp2_mec7.getText(), nome_eqp2_mec8.getText(), 
+                            nome_eqp2_eng1.getText());
+        
+        
+        JOptionPane.showMessageDialog(null,"Equipes Cadastradas com Sucesso !");
+        
+        CardLayout c1 = (CardLayout) card.getLayout();
+        c1.show(card, "corrida");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(UIRACER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(UIRACER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(UIRACER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(UIRACER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UIRACER().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel card;
+    private javax.swing.JPanel corrida;
+    private javax.swing.JLabel icon_fog;
+    private javax.swing.JLabel icon_rain;
+    private javax.swing.JLabel icon_sun;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jL_Flag1;
+    private javax.swing.JLabel jL_Flag2;
+    private javax.swing.JLabel jL_TotVoltas;
+    private javax.swing.JLabel jL_countVoltas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4def_equipes;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField nome_eqp1;
+    private javax.swing.JTextField nome_eqp1_eng;
+    private javax.swing.JTextField nome_eqp1_mec1;
+    private javax.swing.JTextField nome_eqp1_mec2;
+    private javax.swing.JTextField nome_eqp1_mec3;
+    private javax.swing.JTextField nome_eqp1_mec4;
+    private javax.swing.JTextField nome_eqp1_piloto;
+    private javax.swing.JTextField nome_eqp2;
+    private javax.swing.JTextField nome_eqp2_eng1;
+    private javax.swing.JTextField nome_eqp2_mec5;
+    private javax.swing.JTextField nome_eqp2_mec6;
+    private javax.swing.JTextField nome_eqp2_mec7;
+    private javax.swing.JTextField nome_eqp2_mec8;
+    private javax.swing.JTextField nome_eqp2_piloto1;
+    // End of variables declaration//GEN-END:variables
+
+    
+    
+    //Methods:
+    
+    public void choseWeather(String str){
+        
+        if(str == "Chuva"){
+             icon_rain.setVisible(true);
+             icon_fog.setVisible(false);
+             icon_sun.setVisible(false);
+        }
+        
+        
+        if(str == "Neblina"){
+             icon_rain.setVisible(false);
+             icon_fog.setVisible(true);
+             icon_sun.setVisible(false);
+        }
+        
+        if(str == "Sol"){
+             icon_rain.setVisible(false);
+             icon_fog.setVisible(false);
+             icon_sun.setVisible(true);
+        }
+    }
+    
+    public void startFrame(){
+        icon_fog.setVisible(false);
+        icon_rain.setVisible(false);
+        icon_sun.setVisible(true);
+        jL_countVoltas.setText("?");
+        jL_TotVoltas.setText("5");
+    }
+    
+    
+    public String[] defEquipes(String nomeEqp, String piloto, String mec1, String mec2, String mec3, String mec4, String eng){
+        String[] dados = new String[7];
+        dados[0] = nomeEqp;
+        dados[1] = piloto;
+        dados[2] = mec1;
+        dados[3] = mec2;
+        dados[4] = mec3;
+        dados[5] = mec4;
+        dados[6] = eng;
+        
+        return dados;
+    }
+    
+    
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+}
