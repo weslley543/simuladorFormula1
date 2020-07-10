@@ -5,16 +5,20 @@
  */
 package f1simulator;
 
+import com.sun.glass.events.ViewEvent;
 import controller.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -23,6 +27,7 @@ import javafx.scene.image.ImageView;
 public class FXMLDocumentController implements Initializable {
     
     controller sis = new controller();
+    timer tm = new timer();
     
     static float x = 0, y = 0, r = -15, flag = 0;
     public static float x_red_origin, y_red_origin, r_red_origin;
@@ -34,6 +39,12 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private ImageView weather_fog,weather_sun, weather_rain ;
+    
+    @FXML
+    private AnchorPane tela,  anchor2;
+    
+    @FXML
+    private VBox vbox;
    
     @FXML
     private ImageView car_red,  car_ylw;
@@ -56,10 +67,32 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void acaodoBotaoRun(ActionEvent event) throws InterruptedException {
         System.out.println("Controller aquii:" + sis.test());
-        setOrigin();
-        rodar();
-        fg = 1;
+       
+       // rodar();
+        ini();
+        
+
      }
+    
+    
+    public void ini() throws InterruptedException{
+     int i=0;
+        
+         setOrigin();
+        while(i < 80){
+            rodar();
+            while(tm.isAlive()){
+                tm.sleep(1000);
+                tm.interrupt();
+            }
+            
+            i++;
+            fg =1;
+            tm.start();
+        }
+    
+    
+    }
     
     public void rodar(){
         status_car_red.setText(sis.getCarStatus());
@@ -290,6 +323,7 @@ public class FXMLDocumentController implements Initializable {
        total_voltas.setText(String.valueOf(sis.getTotalVolta()));
        
     }    
+    
         
     
 }

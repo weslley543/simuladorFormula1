@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="f1simulator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="tela" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="f1simulator.FXMLDocumentController">
    <children>
-      <VBox prefHeight="647.0" prefWidth="609.0">
+      <VBox fx:id="vbox" prefHeight="647.0" prefWidth="609.0">
         <children>
-          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="654.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
+          <AnchorPane fx:id="anchor2" maxHeight="-1.0" maxWidth="-1.0" prefHeight="654.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#043b6f" height="207.0" layoutX="377.0" layoutY="435.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#043b6f" height="207.0" layoutX="21.0" layoutY="435.0" stroke="BLACK" strokeType="INSIDE" width="306.0" />
