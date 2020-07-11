@@ -132,7 +132,7 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         initComponents();
         startFrame();
         CardLayout c1 = (CardLayout) card.getLayout();
-        c1.show(card, "def_eqp");
+        c1.show(card, "iniciar");
         this.setLocationRelativeTo(null);
     }
 
@@ -146,7 +146,7 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         card = new javax.swing.JPanel();
-        jPanel4def_equipes = new javax.swing.JPanel();
+        def_equipes = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         nome_eqp1 = new javax.swing.JTextField();
@@ -193,6 +193,7 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jTextArea2 = new javax.swing.JTextArea();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -209,7 +210,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jLabel11 = new javax.swing.JLabel();
         icon_rain = new javax.swing.JLabel();
         icon_fog = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -221,6 +221,10 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        ini = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        bt_jogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(993, 827));
@@ -230,35 +234,27 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
 
         card.setLayout(new java.awt.CardLayout());
 
-        jPanel4def_equipes.setMaximumSize(new java.awt.Dimension(943, 664));
-        jPanel4def_equipes.setMinimumSize(new java.awt.Dimension(943, 664));
-        jPanel4def_equipes.setPreferredSize(new java.awt.Dimension(943, 664));
-        jPanel4def_equipes.setLayout(null);
+        def_equipes.setMaximumSize(new java.awt.Dimension(943, 664));
+        def_equipes.setMinimumSize(new java.awt.Dimension(943, 664));
+        def_equipes.setPreferredSize(new java.awt.Dimension(943, 664));
+        def_equipes.setLayout(null);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), new java.awt.Color(157, 0, 0))); // NOI18N
+        jPanel8.setForeground(new java.awt.Color(255, 102, 0));
 
         jLabel20.setText("Nome Equipe");
 
-        nome_eqp1.setText("jTextField1");
         nome_eqp1.setAutoscrolls(false);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos")));
 
         jLabel22.setText("Nome");
 
-        nome_eqp1_mec1.setText("jTextField1");
-
         jLabel23.setText("Nome");
-
-        nome_eqp1_mec2.setText("jTextField1");
 
         jLabel24.setText("Nome");
 
         jLabel25.setText("Nome");
-
-        nome_eqp1_mec4.setText("jTextField1");
-
-        nome_eqp1_mec3.setText("jTextField1");
 
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -311,8 +307,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
 
         jLabel26.setText("Nome");
 
-        nome_eqp1_eng.setText("jTextField1");
-
         org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -338,8 +332,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jPanel7.setAutoscrolls(true);
 
         jLabel21.setText("Nome");
-
-        nome_eqp1_piloto.setText("jTextField1");
 
         org.jdesktop.layout.GroupLayout jPanel7Layout = new org.jdesktop.layout.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -402,41 +394,40 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
                 .add(29, 29, 29))
         );
 
-        jPanel4def_equipes.add(jPanel8);
-        jPanel8.setBounds(20, 70, 393, 530);
+        def_equipes.add(jPanel8);
+        jPanel8.setBounds(40, 130, 393, 530);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/icons8-gerador-de-automóvel-40.png"))); // NOI18N
         jButton2.setText("Cadastrar Equipes");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel4def_equipes.add(jButton2);
-        jButton2.setBounds(410, 630, 140, 30);
+        def_equipes.add(jButton2);
+        jButton2.setBounds(390, 680, 220, 70);
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Equipe 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24), java.awt.Color.orange)); // NOI18N
+        jPanel13.setForeground(java.awt.Color.orange);
 
         jLabel34.setText("Nome Equipe");
-
-        nome_eqp2.setText("jTextField1");
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Mecanicos")));
 
         jLabel35.setText("Nome");
 
-        nome_eqp2_mec5.setText("jTextField1");
+        nome_eqp2_mec5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nome_eqp2_mec5ActionPerformed(evt);
+            }
+        });
 
         jLabel36.setText("Nome");
-
-        nome_eqp2_mec6.setText("jTextField1");
 
         jLabel37.setText("Nome");
 
         jLabel38.setText("Nome");
-
-        nome_eqp2_mec7.setText("jTextField1");
-
-        nome_eqp2_mec8.setText("jTextField1");
 
         org.jdesktop.layout.GroupLayout jPanel14Layout = new org.jdesktop.layout.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -489,8 +480,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
 
         jLabel39.setText("Nome");
 
-        nome_eqp2_eng1.setText("jTextField1");
-
         org.jdesktop.layout.GroupLayout jPanel15Layout = new org.jdesktop.layout.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -515,8 +504,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Piloto"));
 
         jLabel40.setText("Nome");
-
-        nome_eqp2_piloto1.setText("jTextField1");
 
         org.jdesktop.layout.GroupLayout jPanel16Layout = new org.jdesktop.layout.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -578,13 +565,13 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
                 .add(30, 30, 30))
         );
 
-        jPanel4def_equipes.add(jPanel13);
-        jPanel13.setBounds(530, 70, 393, 530);
+        def_equipes.add(jPanel13);
+        jPanel13.setBounds(570, 130, 393, 530);
 
-        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel9.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel27.setFont(new java.awt.Font("Freestyle Script", 1, 48)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel27.setFont(new java.awt.Font("Palatino Linotype", 1, 75)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 76, 140));
         jLabel27.setText("DEFININDO EQUIPES");
 
         org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
@@ -592,21 +579,22 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(337, Short.MAX_VALUE)
-                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 390, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(213, 213, 213))
+                .addContainerGap(86, Short.MAX_VALUE)
+                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 853, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(51, 51, 51))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
-                .add(0, 13, Short.MAX_VALUE)
-                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 78, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jPanel4def_equipes.add(jPanel9);
-        jPanel9.setBounds(0, 0, 940, 60);
+        def_equipes.add(jPanel9);
+        jPanel9.setBounds(0, 0, 990, 100);
 
-        card.add(jPanel4def_equipes, "def_eqp");
+        card.add(def_equipes, "def_eqp");
 
         corrida.setMaximumSize(new java.awt.Dimension(989, 768));
         corrida.setMinimumSize(new java.awt.Dimension(989, 768));
@@ -631,6 +619,10 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         jProgressBar1.setBounds(90, 540, 310, 24);
         corrida.add(jProgressBar2);
         jProgressBar2.setBounds(670, 540, 300, 26);
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/car_blue.png"))); // NOI18N
+        corrida.add(jLabel14);
+        jLabel14.setBounds(510, 210, 54, 36);
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -664,11 +656,11 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_red.png"))); // NOI18N
         corrida.add(jLabel9);
-        jLabel9.setBounds(310, 410, 60, 36);
+        jLabel9.setBounds(320, 420, 60, 36);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_yellow.png"))); // NOI18N
         corrida.add(jLabel10);
-        jLabel10.setBounds(400, 440, 53, 35);
+        jLabel10.setBounds(410, 440, 53, 35);
 
         jL_countVoltas.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
         jL_countVoltas.setText("0");
@@ -708,10 +700,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         icon_fog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/fog.png"))); // NOI18N
         corrida.add(icon_fog);
         icon_fog.setBounds(840, 30, 80, 80);
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_red.png"))); // NOI18N
-        corrida.add(jLabel14);
-        jLabel14.setBounds(30, 530, 54, 36);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_yellow.png"))); // NOI18N
         corrida.add(jLabel12);
@@ -779,7 +767,34 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         corrida.add(jPanel2);
         jPanel2.setBounds(0, 0, 990, 130);
 
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/f1simulator/car_red.png"))); // NOI18N
+        corrida.add(jLabel30);
+        jLabel30.setBounds(30, 530, 54, 36);
+
         card.add(corrida, "corrida");
+
+        ini.setLayout(null);
+
+        jLabel28.setFont(new java.awt.Font("Tw Cen MT", 3, 150)); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/racer.jpg"))); // NOI18N
+        ini.add(jLabel28);
+        jLabel28.setBounds(0, 0, 989, 558);
+
+        bt_jogar.setBackground(new java.awt.Color(0, 0, 0));
+        bt_jogar.setFont(new java.awt.Font("Tahoma", 0, 150)); // NOI18N
+        bt_jogar.setForeground(new java.awt.Color(153, 0, 0));
+        bt_jogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formula1simulator/icons8-play-dentro-de-um-círculo-100.png"))); // NOI18N
+        bt_jogar.setText("JOGAR");
+        bt_jogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_jogar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_jogarActionPerformed(evt);
+            }
+        });
+        ini.add(bt_jogar);
+        bt_jogar.setBounds(-1, 560, 990, 220);
+
+        card.add(ini, "iniciar");
 
         getContentPane().add(card);
         card.setBounds(0, 0, 989, 782);
@@ -806,10 +821,19 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
         
         
         JOptionPane.showMessageDialog(null,"Equipes Cadastradas com Sucesso !");
-        
         CardLayout c1 = (CardLayout) card.getLayout();
         c1.show(card, "corrida");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void nome_eqp2_mec5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome_eqp2_mec5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nome_eqp2_mec5ActionPerformed
+
+    private void bt_jogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_jogarActionPerformed
+        // TODO add your handling code here:
+        CardLayout c1 = (CardLayout) card.getLayout();
+        c1.show(card, "def_eqp");
+    }//GEN-LAST:event_bt_jogarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -848,11 +872,14 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_jogar;
     private javax.swing.JPanel card;
     private javax.swing.JPanel corrida;
+    private javax.swing.JPanel def_equipes;
     private javax.swing.JLabel icon_fog;
     private javax.swing.JLabel icon_rain;
     private javax.swing.JLabel icon_sun;
+    private javax.swing.JPanel ini;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jL_Flag1;
@@ -879,7 +906,9 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -898,7 +927,6 @@ public class UIRACER extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4def_equipes;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
