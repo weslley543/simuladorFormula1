@@ -4,44 +4,79 @@
  * and open the template in the editor.
  */
 package formula1simulator;
+import java.util.EventListener;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author weslley
  */
-public class Car extends Thread {
-    int identificador;
-    String team;
-    int round;
-    int fuel;
-    int state;
-    public Car(int fuel, String team, int id, int state, int round){
-        this.fuel = fuel;
+public class Car extends Thread implements  EventListener {
+
+    private int identificador;
+    private String team;
+    private int round;
+    private int fuel;
+    private boolean turnState;
+    private String event;
+
+    public Car(String team, int id) {
+        this.fuel = 100;
         this.team = team;
-        this.state = 0;
-        this.round =0;
+        
+        this.round = 0;
+        this.turnState = false;
+        this.event = "";
+        
     }
-    
+
     /**
      *
      */
     @Override
-    public void run(){
+    public void run() {
         int i = this.round;
-        int rounds = 50;
-        while(i<rounds){
-            this.state = (int)(Math.random()*3)%2;
+        
+        long ini = System.currentTimeMillis();
+        
+        while (this.round <50) {
+            this.setTurnState(false);
             
-            switch (this.state){
-                case 0 : System.out.println(this.team + "Parado"); break;
-                case 1 : System.out.println(this.team +"Correndo");break;
-                case 2 : System.out.println(this.team +"PitStop");break;
+            
+            if (this.fuel < 20) {
+                this.setEvent("Reabastecendo");
+                try {
+                    Car.sleep(50);
+                    this.putFuel();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Car.class.getName())
+                            .log(Level.SEVERE, null, ex);
+                }
+            } else {
+                this.setEvent("Troca de Pneu");
+                try {
+                    this.sleep(125);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Car.class.getName())
+                            .log(Level.SEVERE, null, ex);
+                }
             }
             
-            i++;
-            
+            Random aux = new Random();
+           
+            this.setFuel(aux.nextInt(100));
+            this.round++;
+            this.setTurnState(true);
         }
+
     }
+
+    public void putFuel() {
+        this.setFuel(round);
+    }
+
     public int identificador() {
         return identificador;
     }
@@ -73,4 +108,23 @@ public class Car extends Thread {
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public String getEvent() {
+        return this.event;
+    }
+
+    public boolean isTurnState() {
+        return turnState;
+    }
+
+    public void setTurnState(boolean turnState) {
+        this.turnState = turnState;
+    }
+
+    
+
 }
